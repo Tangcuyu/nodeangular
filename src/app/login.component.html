@@ -1,0 +1,17 @@
+<div id="sideNav" class="login_sidenav">
+    <form action="">
+        <div class="container">
+            <a href="#" class="closebtn">&times;</a>
+            <div class="row">Please Login:</div>
+            <div class="row">
+                <input type="text" class="sidenav-input" placeholder="Username" name="userName" [(ngModel)]="userName">
+            </div>
+            <div class="row">
+                <input type="text" class="sidenav-input" placeholder="Password" name="passWord" [(ngModel)]="passWord">
+            </div>
+            <div class="row">
+                <button class="btn btn-primary btn-lg" (click)="loginChecked()">Login</button>
+            </div>
+        </div>
+    </form>
+</div>
