@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 
@@ -15,7 +16,7 @@ import { LoginComponent } from './login.component';
     AppComponent, NavbarComponent, LoginComponent
   ],
   imports: [
-    BrowserModule, HttpModule, FormsModule
+    BrowserModule, HttpModule, HttpClientModule, FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

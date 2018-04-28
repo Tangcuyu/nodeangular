@@ -1,5 +1,6 @@
 import { Component, Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'app-login-component',
@@ -7,38 +8,35 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 })
 @Injectable()
 export class LoginComponent {
-    userName: string;
-    passWord: string;
-
-    constructor (private http: Http) {
+    username: string;
+    password: string;
+    constructor(private http: Http) {
     }
 
-    loginChecked() {
-        console.log(`this.userName : ${this.userName}`);
-        console.log(`this.passWord : ${this.passWord}`);
-
+    loginClicked() {
+        console.log(`this.username : ${this.username}`);
+        console.log(`this.password : ${this.password}`);
         const headers = new Headers();
-       // headers.append('Content-Type', 'application/json');
-
-        const options = new RequestOptions({ headers: headers });
+        headers.append('Content-Type', 'application/json');
 
         const jsonPacket = {
-            userName: this.userName,
-            passWord: this.passWord
+            username: this.username,
+            password: this.password
         };
 
-        this.http.post('/login', 'jsonPacket', options)
-        .map(res => res.text())
-        .subscribe(
-            (data) => {
-                data = JSON.parse(data);
-            },
-            err => {
-                console.log(`login component error: ${err}`);
-            },
-            () => {
-                console.log(`login component success`);
-            }
-        );
+        this.http.post('/login', jsonPacket, {
+            headers: headers
+        })
+            .map(res => res.text())
+            .subscribe(
+                data => data,
+                err => {
+                    console.log(`error : ${err}`);
+                },
+                () => {
+                    console.log(`success`);
+                }
+            );
     }
+
 }

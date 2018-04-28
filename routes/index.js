@@ -1,6 +1,7 @@
 "use strict";
 exports.__esModule = true;
 var express = require("express");
+var util = require("util");
 var router = express.Router();
 exports.router = router;
 router.get('/', function (req, res, next) {
@@ -18,16 +19,16 @@ router.get('/menuItems', function (req, res, next) {
     });
 });
 router.post('/login', function (req, res, next) {
-    console.log(req.body);
-    if (req.body.userName.length > 0) {
+    /* if (req.body.userName.length > 0) {
         req.session['userName'] = req.body.userName;
-        console.log("user login");
+        console.log(`user login`);
         // res.redirect('/');
-    }
-    else {
+    } else {
         res.render('index', {
             title: 'Express',
             ErrorMessage: 'Please enter a user name'
         });
-    }
+    } */
+    console.log("login received:\n        " + util.inspect(req.body, false, null));
+    res.sendStatus(200);
 });

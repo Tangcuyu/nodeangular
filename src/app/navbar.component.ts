@@ -1,5 +1,5 @@
 import { Component, Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 
 interface IButtonName {
     ButtonName: string;
@@ -13,14 +13,11 @@ interface IButtonName {
 export class NavbarComponent {
     menuItems: IButtonName [];
 
-    constructor (private http: Http) {
-        console.log('navbar component constructor');
+    constructor (private http: HttpClient) {
         this.http.get('/menuItems')
-        .map(res => res.text())
         .subscribe(
             (data) => {
-                const jsonResponse = JSON.parse(data);
-                this.menuItems = jsonResponse.menuItems;
+                this.menuItems = data['menuItems'];
             },
             err => {
                 console.log(`error: ${err}`);
